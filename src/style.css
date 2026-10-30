@@ -1,0 +1,203 @@
+.page-transition {
+    transition: transform .6s cubic-bezier(.25, 1, .5, 1), opacity .6s cubic-bezier(.25, 1, .5, 1);
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.page-transition.is-loading {
+    transform: translateY(-24px);
+    opacity: 0;
+}
+
+#particles-js {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.background-glow {
+    position: fixed;
+    inset: -10%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 18% 22%, rgb(255 193 7 / 16%), transparent 42%),
+        radial-gradient(ellipse at 82% 76%, rgb(255 214 64 / 12%), transparent 40%);
+    filter: blur(28px);
+    animation: glowPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    from { opacity: .65; }
+    to { opacity: 1; }
+}
+
+.hero-copy,
+.portrait-wrap {
+    animation: homeEnter .8s cubic-bezier(.2, .75, .25, 1) both;
+}
+
+.portrait-wrap { animation-delay: .12s; }
+
+@keyframes homeEnter {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-shimmer {
+    color: #ffd166;
+    background-image: linear-gradient(110deg, #ffd166 0%, #ffe29a 38%, #fff 50%, #ffe29a 62%, #ffd166 100%);
+    background-size: 250% 100%;
+    background-position: 100% center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: heroTextShine 4s linear infinite;
+}
+
+@keyframes heroTextShine {
+    to { background-position: -150% center; }
+}
+
+.role-line::before {
+    width: 2px;
+    height: 1.5em;
+    flex: 0 0 2px;
+    background: #ffd166;
+    content: "";
+}
+
+.role-rotator {
+    position: relative;
+    display: block;
+    width: clamp(14rem, 27vw, 20rem);
+    height: 1.6em;
+    overflow: hidden;
+}
+
+.role-rotator span {
+    position: absolute;
+    inset: 0;
+    display: block;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate3d(0, 45%, 0);
+    animation: roleCrossfade 6s cubic-bezier(.22, 1, .36, 1) infinite both;
+}
+
+.role-rotator span + span { animation-delay: -3s; }
+
+@keyframes roleCrossfade {
+    0%, 45% { opacity: 1; transform: translate3d(0, 0, 0); }
+    50% { opacity: 0; transform: translate3d(0, -45%, 0); }
+    95% { opacity: 0; transform: translate3d(0, 45%, 0); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.portrait-wrap::before {
+    position: absolute;
+    inset: 12% -8% -7% 12%;
+    border: 1px solid rgb(255 209 102 / 28%);
+    border-radius: 48% 48% 2rem 2rem;
+    background: radial-gradient(ellipse at 60% 20%, rgb(255 193 7 / 19%), transparent 68%);
+    content: "";
+    transform: rotate(4deg);
+    transition: transform .5s ease, border-color .5s ease;
+}
+
+.portrait-wrap:hover::before {
+    border-color: rgb(255 209 102 / 55%);
+    transform: rotate(1deg) scale(1.025);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .65s ease, transform .65s cubic-bezier(.2, .75, .25, 1);
+}
+
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+@media (hover: hover) and (pointer: fine) {
+    body :is(a, button, article) {
+        position: relative;
+        isolation: isolate;
+    }
+
+    body :is(a, button, article)::after {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(220px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgb(255 209 102 / 18%), transparent 72%);
+        content: "";
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .2s ease;
+    }
+
+    body :is(a, button, article):hover::after { opacity: 1; }
+
+    body .contact-card::after {
+        inset: -18px;
+        background: radial-gradient(260px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgb(255 209 102 / 9%), transparent 72%);
+        filter: blur(26px);
+        transition: opacity .55s ease;
+    }
+
+    nav a::after {
+        background: radial-gradient(150px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgb(255 209 102 / 7%), transparent 76%);
+    }
+}
+
+.project-dialog {
+    opacity: 0;
+    transform: translateY(22px) scale(.97);
+    transition: opacity .3s ease, transform .35s cubic-bezier(.2, .8, .2, 1), overlay .35s allow-discrete, display .35s allow-discrete;
+}
+
+.project-dialog[open] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.project-dialog::backdrop {
+    background: rgb(5 5 4 / 78%);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity .3s ease, overlay .35s allow-discrete, display .35s allow-discrete;
+}
+
+.project-dialog[open]::backdrop { opacity: 1; }
+
+@starting-style {
+    .project-dialog[open] { opacity: 0; transform: translateY(22px) scale(.97); }
+    .project-dialog[open]::backdrop { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    .background-glow { animation: none; }
+
+    .home-page *,
+    .home-page *::before,
+    .home-page *::after,
+    .about-page *,
+    .about-page *::before,
+    .about-page *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal { opacity: 1; transform: none; }
+    .role-rotator span { animation: none; opacity: 0; transform: none; }
+    .role-rotator span:first-child { opacity: 1; }
+    .hero-shimmer {
+        animation: none;
+        background-position: center;
+    }
+}

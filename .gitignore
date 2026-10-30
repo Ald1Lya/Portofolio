@@ -1,0 +1,4 @@
+/node_modules/
+/particles.js-master/*
+!/particles.js-master/particles.min.js
+!/particles.js-master/LICENSE.md
