@@ -6,8 +6,8 @@
     <meta name="description" content="A closer look at an OCR-powered ID number extraction system built for Samboja Kuala District.">
     <title>OCR ID System | Aldino Tegar Zhahrolla</title>
     <link rel="icon" type="image/webp" href="../img/Logo.webp">
-    <link rel="stylesheet" href="../src/output.css?v=20261030-2357">
-    <link rel="stylesheet" href="../src/style.css?v=20261030-2357">
+    <link rel="stylesheet" href="../src/output.css?v=20261031-2118">
+    <link rel="stylesheet" href="../src/style.css?v=20261031-2118">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="overflow-x-hidden bg-[#10100d] font-sans text-[#f0e6d2]">
@@ -18,7 +18,7 @@
         </a>
     </nav>
 
-    <main class="relative z-10 mx-auto w-[min(100%-3rem,1100px)] pt-36 pb-24 max-[560px]:w-[min(100%-2.5rem,440px)] max-[560px]:pt-32">
+    <main class="project-page relative z-10 mx-auto w-[min(100%-3rem,1100px)] pt-36 pb-24 max-[560px]:w-[min(100%-2.5rem,440px)] max-[560px]:pt-32">
         <header class="mx-auto mb-16 max-w-[820px]">
             <p class="mb-4 text-[.75rem] tracking-[.24em] uppercase text-[#ffd166]/[.78]">Featured project · Samboja Kuala District</p>
             <h1 class="font-display text-[clamp(3rem,7vw,5.8rem)] leading-[.92] text-[#f0e6d2]">Automatic ID Number Extraction System</h1>
@@ -105,5 +105,38 @@
             <a href="index.html" class="text-sm text-[#ffe29a] underline decoration-[#ffd166]/40 underline-offset-4 transition-colors hover:text-[#fff1c8]">← Back to my portfolio</a>
         </footer>
     </main>
+<script>
+    const projectPage = document.querySelector('.project-page');
+    const projectRevealItems = projectPage.querySelectorAll(':scope > header, :scope > section, :scope > footer, article');
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+        projectPage.classList.add('page-motion-ready');
+        const revealGroups = new Map();
+
+        projectRevealItems.forEach((item) => {
+            item.dataset.pageReveal = '';
+            const parent = item.parentElement;
+            const siblings = revealGroups.get(parent) ?? [];
+            siblings.push(item);
+            revealGroups.set(parent, siblings);
+        });
+
+        revealGroups.forEach((items) => {
+            items.forEach((item, index) => {
+                item.style.setProperty('--reveal-delay', `${Math.min(index * 90, 360)}ms`);
+            });
+        });
+
+        const projectRevealObserver = new IntersectionObserver((entries, currentObserver) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                currentObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+        projectRevealItems.forEach((item) => projectRevealObserver.observe(item));
+    }
+</script>
 </body>
 </html>
