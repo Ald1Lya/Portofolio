@@ -8,7 +8,10 @@
     </header>
 
     <article class="overflow-hidden rounded-[1.5rem] border border-[#ffd166]/[.22] bg-[#0d0d0d]/[.72] shadow-[0_28px_75px_rgb(0_0_0_/_40%),0_0_30px_rgb(255_209_102_/_8%)]">
-        <img class="mx-auto block h-auto w-full max-w-[760px]" src="img/HOK.webp" alt="Honor of Kings profile for YureNeko, showing the in-game profile and statistics" fetchpriority="high">
+        <div class="hok-profile-frame" aria-busy="true">
+            <img class="hok-profile-image" src="img/HOK.webp" alt="Honor of Kings profile for YureNeko, showing the in-game profile and statistics" fetchpriority="high" onload="this.parentElement.classList.add('is-loaded'); this.parentElement.setAttribute('aria-busy', 'false'); this.nextElementSibling.textContent = ''" onerror="this.parentElement.classList.add('is-error'); this.parentElement.setAttribute('aria-busy', 'false'); this.nextElementSibling.textContent = 'Profile image could not be loaded.'">
+            <span class="hok-image-status" role="status" aria-live="polite">Loading profile image...</span>
+        </div>
         <div class="grid gap-5 border-t border-[#ffe08a]/[.14] p-5 sm:grid-cols-2 sm:p-7">
             <div>
                 <p class="text-xs tracking-[.2em] uppercase text-[#ffd166]/[.75]">Player name</p>
