@@ -111,6 +111,15 @@
     transform: rotate(1deg) scale(1.025);
 }
 
+.portrait-image {
+    animation: portraitImageEnter 1.1s cubic-bezier(.22, 1, .36, 1) .28s both;
+}
+
+@keyframes portraitImageEnter {
+    from { opacity: 0; clip-path: inset(8% 8% 8% 8% round 48%); }
+    to { opacity: 1; clip-path: inset(0); }
+}
+
 .reveal {
     opacity: 0;
     transform: translateY(22px);
@@ -228,6 +237,7 @@
 
     .reveal { opacity: 1; transform: none; }
     [data-page-reveal] { opacity: 1; translate: none; }
+    .portrait-image { animation-delay: 0s; }
     .role-rotator span { animation: none; opacity: 0; transform: none; }
     .role-rotator span:first-child { opacity: 1; }
     .hero-shimmer {
