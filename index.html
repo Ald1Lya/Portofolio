@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aldino-Tegar-Zhahrolla</title>
-       <link rel="icon" type="image/png" href="/img/Logo.webp">
+       <link rel="icon" type="image/png" href="img/Logo.webp">
 
     <!-- Path CSS -->
-    <link rel="stylesheet" href="/src/output.css?v=20261101-1322">
-    <link rel="stylesheet" href="/src/style.css?v=20261101-1322">
+    <link rel="stylesheet" href="src/output.css?v=20261101-1322">
+    <link rel="stylesheet" href="src/style.css?v=20261101-1356">
 
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 </head>
@@ -16,7 +16,7 @@
     <div class="background-glow" aria-hidden="true"></div>
     <div id="particles-js" aria-hidden="true"></div>
 
-    <script src="/particles.js-master/particles.min.js"></script>
+    <script src="particles.js-master/particles.min.js"></script>
     <script>
         particlesJS("particles-js", {
             particles: {
@@ -76,10 +76,11 @@
     <!-- Area Konten Dinamis dengan Animasi Dasar -->
     <main id="app" class="page-transition relative z-10 w-full min-h-screen"></main>
 
-    <script src="/src/scroll-edge-glow.js"></script>
+    <script src="src/scroll-edge-glow.js"></script>
     <script>
         let pageRevealObserver = null;
         let pageLoadId = 0;
+        const pageDirectory = new URL('Index/', document.baseURI);
 
         async function loadPage(pageUrl) {
             const app = document.getElementById('app');
@@ -91,7 +92,7 @@
             if (currentLoadId !== pageLoadId) return;
 
             try {
-                const pageUrlWithCacheBust = new URL(pageUrl, new URL('/Index/', window.location.origin));
+                const pageUrlWithCacheBust = new URL(pageUrl, pageDirectory);
                 pageUrlWithCacheBust.searchParams.set('_refresh', Date.now().toString());
                 const response = await fetch(pageUrlWithCacheBust, { cache: 'no-store' });
                 if (!response.ok) throw new Error(`Gagal memuat halaman: ${pageUrl} (${response.status})`);

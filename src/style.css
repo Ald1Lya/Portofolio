@@ -50,13 +50,67 @@ body::after { bottom: 0; }
 body::before { opacity: var(--top-edge-glow, .16); }
 body::after { opacity: var(--bottom-edge-glow, .16); }
 
+.instagram-post-card::before,
+.instagram-post-card::after {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    pointer-events: none;
+    transition: opacity .45s ease, visibility .45s ease;
+}
+
+.instagram-post-card::before {
+    inset: 0;
+    background:
+        linear-gradient(90deg, transparent 0%, rgb(255 209 102 / 9%) 48%, transparent 100%) 0 0 / 220% 100%,
+        linear-gradient(#19170f, #100f0c);
+    animation: instagramShimmer 1.8s ease-in-out infinite;
+}
+
+.instagram-post-card::after {
+    top: 50%;
+    left: 50%;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid rgb(255 209 102 / 20%);
+    border-top-color: #ffd166;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgb(255 209 102 / 18%);
+    animation: instagramSpinner .8s linear infinite;
+}
+
+.instagram-post-card.is-loaded::before,
+.instagram-post-card.is-loaded::after {
+    visibility: hidden;
+    opacity: 0;
+}
+
 .instagram-post-preview {
+    position: relative;
+    z-index: 2;
     display: block;
     width: 100%;
     max-width: 540px;
     height: 680px;
     border: 0;
-    pointer-events: none;
+    border-radius: 1rem;
+    background: #100f0c;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .55s ease, transform .65s cubic-bezier(.22, 1, .36, 1);
+}
+
+.instagram-post-card.is-loaded .instagram-post-preview {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes instagramShimmer {
+    to { background-position: -220% 0, 0 0; }
+}
+
+@keyframes instagramSpinner {
+    to { transform: rotate(360deg); }
 }
 
 @keyframes glowPulse {
@@ -252,6 +306,9 @@ body::after { opacity: var(--bottom-edge-glow, .16); }
     .background-glow { animation: none; }
     body::before,
     body::after { transition: none; }
+    .instagram-post-card::before { animation: none; }
+    .instagram-post-card::after { animation-duration: 1.5s; }
+    .instagram-post-preview { transition: none; }
 
     .home-page *,
     .home-page *::before,
