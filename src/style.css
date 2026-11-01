@@ -50,6 +50,15 @@ body::after { bottom: 0; }
 body::before { opacity: var(--top-edge-glow, .16); }
 body::after { opacity: var(--bottom-edge-glow, .16); }
 
+.instagram-post-preview {
+    display: block;
+    width: 100%;
+    max-width: 540px;
+    height: 680px;
+    border: 0;
+    pointer-events: none;
+}
+
 @keyframes glowPulse {
     from { opacity: .65; }
     to { opacity: 1; }
