@@ -1,0 +1,43 @@
+<section class="project-page mx-auto min-h-screen w-[min(100%-3rem,1100px)] pt-36 pb-24 max-[560px]:w-[min(100%-2.5rem,440px)] max-[560px]:pt-32">
+    <header class="mx-auto mb-12 max-w-[820px]">
+        <p class="mb-4 text-[.75rem] tracking-[.24em] uppercase text-[#ffd166]/[.78]">One of my favorite games</p>
+        <h1 class="font-display text-[clamp(3rem,7vw,5.8rem)] leading-[.92] text-[#f0e6d2]">HONOR OF KINGS</h1>
+        <p class="mt-6 max-w-[68ch] text-base leading-[1.85] text-[#f0e6d2]/[.7]">
+            My player profile and stats from Honor of Kings.
+        </p>
+    </header>
+
+    <article class="overflow-hidden rounded-[1.5rem] border border-[#ffd166]/[.22] bg-[#0d0d0d]/[.72] shadow-[0_28px_75px_rgb(0_0_0_/_40%),0_0_30px_rgb(255_209_102_/_8%)]">
+        <img class="mx-auto block h-auto w-full max-w-[760px]" src="img/HOK.webp" alt="Honor of Kings profile for YureNeko, showing the in-game profile and statistics" fetchpriority="high">
+        <div class="grid gap-5 border-t border-[#ffe08a]/[.14] p-5 sm:grid-cols-2 sm:p-7">
+            <div>
+                <p class="text-xs tracking-[.2em] uppercase text-[#ffd166]/[.75]">Player name</p>
+                <p class="mt-2 text-xl font-semibold text-[#f0e6d2]">YureNeko</p>
+            </div>
+            <div>
+                <p class="text-xs tracking-[.2em] uppercase text-[#ffd166]/[.75]">Region</p>
+                <p class="mt-2 text-xl font-semibold text-[#f0e6d2]">SEA</p>
+            </div>
+            <div class="sm:col-span-2">
+                <p class="text-xs tracking-[.2em] uppercase text-[#ffd166]/[.75]">Player ID</p>
+                <p class="mt-2 break-all font-mono text-lg text-[#f0e6d2]">17491432986117005650</p>
+            </div>
+            <p class="text-sm leading-6 text-[#f0e6d2]/[.55] sm:col-span-2">Profile image from the game. Stats are shown as captured and may change over time.</p>
+        </div>
+    </article>
+
+    <section class="mt-8 rounded-[1.5rem] border border-[#ffd166]/[.2] bg-linear-to-br from-[#ffe08a]/[.07] to-[#11100c]/[.82] p-6 shadow-[0_18px_50px_rgb(0_0_0_/_20%)] sm:p-8" aria-labelledby="hok-friend-heading">
+        <p class="mb-3 text-xs tracking-[.2em] uppercase text-[#ffd166]/[.75]">Looking for a worthy teammate?</p>
+        <h2 id="hok-friend-heading" class="font-display text-3xl text-[#f0e6d2]">LET'S MAKE THE NEXT MATCH LEGENDARY.</h2>
+        <p class="mt-3 max-w-[60ch] text-sm leading-6 text-[#f0e6d2]/[.65]">Add me on Honor of Kings and let's turn every match into a story worth telling.</p>
+        <button type="button" class="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-[#ffd166]/[.4] bg-[#ffd166]/[.1] px-5 py-2 text-sm font-semibold text-[#ffe29a] transition-colors hover:bg-[#ffd166]/[.18] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ffe29a]" onclick="navigator.clipboard.writeText('17491432986117005650').then(() => { document.getElementById('hok-copy-status').textContent = 'Player ID copied — find me in-game!'; }).catch((error) => { console.error('Could not copy HOK player ID.', error); document.getElementById('hok-copy-status').textContent = 'Could not copy. Please copy the Player ID above.'; })">
+            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>
+            Copy Player ID
+        </button>
+        <p id="hok-copy-status" class="mt-3 min-h-5 text-sm text-[#f0e6d2]/[.6]" role="status" aria-live="polite"></p>
+    </section>
+
+    <footer class="mt-10 border-t border-[#ffe08a]/[.14] pt-6">
+        <a href="#" onclick="event.preventDefault(); loadPage('about.html')" class="text-sm text-[#ffe29a] underline decoration-[#ffd166]/40 underline-offset-4 transition-colors hover:text-[#fff1c8]">← Back to about</a>
+    </footer>
+</section>
