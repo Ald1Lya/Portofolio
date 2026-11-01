@@ -90,7 +90,7 @@
             if (currentLoadId !== pageLoadId) return;
 
             try {
-                const pageUrlWithCacheBust = new URL(pageUrl, window.location.href);
+                const pageUrlWithCacheBust = new URL(pageUrl, new URL('/Index/', window.location.origin));
                 pageUrlWithCacheBust.searchParams.set('_refresh', Date.now().toString());
                 const response = await fetch(pageUrlWithCacheBust, { cache: 'no-store' });
                 if (!response.ok) throw new Error(`Gagal memuat halaman: ${pageUrl} (${response.status})`);
