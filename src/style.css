@@ -33,26 +33,22 @@ body::after {
     position: fixed;
     z-index: 60;
     left: 50%;
-    width: min(70vw, 34rem);
-    height: 2px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, transparent, #ffd166 20%, #fff1bd 50%, #ffd166 80%, transparent);
-    box-shadow: 0 0 8px rgb(255 209 102 / 80%), 0 0 22px rgb(255 209 102 / 55%);
+    width: 100vw;
+    height: 3px;
+    background: linear-gradient(90deg, #ffd166, #fff1bd 50%, #ffd166);
+    box-shadow: 0 0 10px rgb(255 209 102 / 85%), 0 0 24px rgb(255 209 102 / 60%);
     content: "";
-    opacity: 0;
+    opacity: .16;
     pointer-events: none;
-    transform: translateX(-50%) scaleX(.6);
-    transition: opacity .35s ease, transform .55s cubic-bezier(.22, 1, .36, 1);
+    transform: translateX(-50%);
+    transition: opacity .2s ease;
 }
 
 body::before { top: 0; }
 body::after { bottom: 0; }
 
-body.scroll-edge-at-top::before,
-body.scroll-edge-at-bottom::after {
-    opacity: 1;
-    transform: translateX(-50%) scaleX(1);
-}
+body::before { opacity: var(--top-edge-glow, .16); }
+body::after { opacity: var(--bottom-edge-glow, .16); }
 
 @keyframes glowPulse {
     from { opacity: .65; }

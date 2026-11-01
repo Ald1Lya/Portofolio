@@ -4,11 +4,13 @@
 
     function updateScrollEdgeGlow() {
         updateScheduled = false;
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPosition = window.scrollY;
+        const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        const scrollProgress = maxScroll === 0 ? 0 : Math.min(1, Math.max(0, window.scrollY / maxScroll));
+        const baseOpacity = 0.16;
+        const opacityRange = 1 - baseOpacity;
 
-        body.classList.toggle('scroll-edge-at-top', scrollPosition <= 2);
-        body.classList.toggle('scroll-edge-at-bottom', maxScroll > 2 && scrollPosition >= maxScroll - 2);
+        body.style.setProperty('--top-edge-glow', `${1 - scrollProgress * opacityRange}`);
+        body.style.setProperty('--bottom-edge-glow', `${baseOpacity + scrollProgress * opacityRange}`);
     }
 
     function scheduleUpdate() {
